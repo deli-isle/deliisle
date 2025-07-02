@@ -1,0 +1,74 @@
+<div class="sidebar">
+<h1>Posts</h1>
+{{- range site.Menus.categories }}
+  <div class="menu-section">
+    <div class="menu-header">
+      <a href="{{ .URL }}" onclick="toggleMenu(this); event.preventDefault();">
+        {{ .Name }}
+        {{- with .Page }}
+          {{- with .Params.version -}}
+            ({{ . }})
+          {{- end }}
+        {{- end }}
+      </a>
+      <button class="expand-btn" onclick="toggleMenu(this); event.stopPropagation(); return false;">></button>
+    </div>
+    <div class="submenu" style="display: none;">
+      {{- if .Children }}
+        {{- range .Children }}
+          <div class="menu-section">
+            <div class="menu-header">
+              <a href="{{ .URL }}" onclick="toggleMenu(this); event.preventDefault();">{{ .Name }}</a>
+              <button class="expand-btn" onclick="toggleMenu(this); event.stopPropagation(); return false;">></button>
+            </div>
+            <div class="submenu" style="display: none;">
+              {{- if .Children }}
+                {{- range .Children }}
+                  <a href="{{ .URL }}" onclick="toggleMenu(this); event.preventDefault();">{{ .Name }}</a>
+                {{- end }}
+              {{- end }}
+              {{- with .Page }}
+                {{- range .RegularPages }}
+                  <a href="{{ .RelPermalink }}">-{{ .Title }}</a>
+                {{- end }}
+              {{- end }}
+            </div>
+          </div>
+        {{- end }}
+      {{- end }}
+      {{- with .Page }}
+        {{- range .RegularPages }}
+          <a href="{{ .RelPermalink }}">-{{ .Title }}</a>
+        {{- end }}
+      {{- end }}
+    </div>
+  </div>
+{{- end }}
+
+
+
+<script>
+function toggleMenu(el) {
+  const menuSection = el.closest('.menu-section');
+  const submenu = menuSection.querySelector('.submenu');
+  if (!submenu) return;
+  if (submenu.style.display === "none" || submenu.style.display === "") {
+    submenu.style.display = "block";
+    const btn = menuSection.querySelector('.expand-btn');
+    if (btn) btn.textContent = "v";
+  } else {
+    submenu.style.display = "none";
+    const btn = menuSection.querySelector('.expand-btn');
+    if (btn) btn.textContent = ">";
+  }
+}
+</script>
+
+<style>
+.menu-header { display: flex; align-items: center; }
+.menu-section { display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 0.5em; }
+.expand-btn { background: none; border: none; cursor: pointer; font-size: 1em; margin-left: 0.2em; margin-bottom: 0.2em; }
+.submenu { margin-left: 1.5em; }
+a { display: block; margin: 0.2em 0; }
+</style>
+</div>

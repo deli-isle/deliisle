@@ -1,0 +1,12 @@
+<nav class="navbar">
+    <div class="navbar__container">
+        <a href="/" id="navbar__logo">&nbsp;<img src="/icon.jpg" alt="icon" style="width: 50px;height: 50px;">&nbsp; {{ site.Title }}&nbsp;</a>
+        <div class="navbar__toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+    </div>
+</nav>
+{{ partialCached "head/js.html" . }}

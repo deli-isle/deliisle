@@ -1,0 +1,4 @@
+baseURL = 'https://deliisle.com/'
+languageCode = 'en-us'
+title = 'DELI ISLAND'
+theme = 'deliisle-theme'

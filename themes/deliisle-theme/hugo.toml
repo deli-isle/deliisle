@@ -1,0 +1,59 @@
+baseURL = 'https://deliisle.com/'
+languageCode = 'en-US'
+title = 'Deli Island'
+
+[menus]
+  [[menus.main]]
+    name = 'Home'
+    pageRef = '/'
+    weight = 10
+
+  [[menus.main]]
+    name = 'About Me'
+    url = '/aboutme.html'
+    weight = 20
+
+  [[menus.categories]]
+    name = 'Prose'
+    pageRef = '/posts/prose'
+    weight = 10
+
+  [[menus.categories]]
+    name = 'Polemics and Essays'
+    pageRef = '/posts/polemics-and-essays'
+    weight = 20
+  
+  [[menus.categories]]
+    name = 'Reviews'
+    pageRef = '/posts/reviews'
+    weight = 30
+  
+  [[menus.categories]]
+    name = 'Misc'
+    pageRef = '/posts/misc'
+    weight = 40
+  
+  [[menus.categories]]
+    name = 'The South Thailanders'
+    pageRef = '/posts/prose/south-thailanders'
+    weight = 1
+    parent = 'Prose'
+
+  [[menus.categories]]
+    name = "Dog's Day Out"
+    pageRef = '/posts/prose/dogs-day-out'
+    weight = 2
+    parent = 'Prose' 
+
+
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = '0.146.0'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.parser]
+      wrapStandAloneImageWithinParagraph = false
+      [markup.goldmark.parser.attribute]
+        block = true
